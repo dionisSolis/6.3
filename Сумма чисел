@@ -1,0 +1,63 @@
+using Microsoft.VisualBasic;
+using System;
+using System.Collections.Generic;
+
+namespace qwerty
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<int> array = new List<int>();
+            bool isPlay = true;
+
+            while (isPlay)
+            {
+                string userInput;
+                int digit;
+
+                Console.Clear();
+                Console.WriteLine("Вы можете ввести или любое число, или sum, или exit");
+                Console.Write("Ввод...");
+                userInput = Console.ReadLine();
+
+                switch (userInput)
+                {
+                    case "sum":
+                        FindSum(array);
+                        break;
+                    case "exit":
+                        isPlay = false;
+                        break;
+                    default:
+                        if (int.TryParse(userInput, out digit))
+                        {
+                            array.Add(digit);
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nТакой команды не существует");
+                        }
+
+                        break;
+                }
+
+                Console.WriteLine("\nНажмите любую кнопку для обновления");
+                Console.ReadKey();
+            }
+
+        }
+
+        static void FindSum(List<int> array)
+        {
+            int sum = 0;
+
+            foreach (int digit in array)
+            {
+                sum += digit;
+            }
+
+            Console.WriteLine("\nТекущая сумма чисел - " + sum);
+        }
+    }
+}
