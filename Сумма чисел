@@ -1,4 +1,3 @@
-using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 
@@ -9,6 +8,7 @@ namespace qwerty
         static void Main(string[] args)
         {
             List<int> array = new List<int>();
+            int sum = 0;
             bool isPlay = true;
 
             while (isPlay)
@@ -24,7 +24,7 @@ namespace qwerty
                 switch (userInput)
                 {
                     case "sum":
-                        FindSum(array);
+                        Console.WriteLine($"\nСумма введенных чисел - {sum}");
                         break;
                     case "exit":
                         isPlay = false;
@@ -33,31 +33,18 @@ namespace qwerty
                         if (int.TryParse(userInput, out digit))
                         {
                             array.Add(digit);
+                            sum += digit;
                         }
                         else
                         {
                             Console.WriteLine("\nТакой команды не существует");
                         }
-
                         break;
                 }
 
                 Console.WriteLine("\nНажмите любую кнопку для обновления");
                 Console.ReadKey();
             }
-
-        }
-
-        static void FindSum(List<int> array)
-        {
-            int sum = 0;
-
-            foreach (int digit in array)
-            {
-                sum += digit;
-            }
-
-            Console.WriteLine("\nТекущая сумма чисел - " + sum);
         }
     }
 }
